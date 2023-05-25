@@ -6,18 +6,10 @@
  */
 
 export default {
-	basicTheme_C: "#F4C741",
+	basicTheme_C: "#FEF7F2",
 
-	subTheme_C: "#C59639",
-	subTheme2_C: "#415273",
-	subTheme3_C: "#344058",
-	subTheme4_C: "#FF6174",
-	subTheme5_C: "#FFECEC",
-	subTheme6_C: "#9DA4B1",
-	subTheme7_C: "#FFCF40",
-	subTheme8_C: "#4495FF",
-	subTheme9_C: "#FFE9A8",
-	subTheme10_C: "#FFFCF2",
+	subTheme_C: "#7B716D",
+	subTheme1_C: "#051D40",
 
 	kakao_C: "#FAE100",
 	naver_C: "#00C73C",

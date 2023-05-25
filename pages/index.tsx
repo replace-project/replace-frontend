@@ -5,6 +5,19 @@
  * Email : pine9805@kakao.com
  */
 
-export default function Home() {
-	return <div>Inital Project</div>;
-}
+import React from "react";
+import styled from "styled-components";
+import { Wrapper } from "../components/common/CommonComponents";
+import Header from "../components/header/Header";
+
+const Home: React.FC = () => {
+	return (
+		<Container>
+			<Header></Header>
+		</Container>
+	);
+};
+
+export default Home;
+
+const Container = styled(Wrapper)``;

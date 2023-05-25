@@ -15,13 +15,14 @@ const globalStyle = css`
 		box-sizing: border-box;
 	}
 	body {
+		margin: 0;
 		font-family: Noto Sans, Noto Sans KR;
 		color: ${theme.black_C};
 		background: ${theme.lightGrey_C};
 
 		section {
 			max-width: 50.8rem;
-			mragin: 0 auto;
+			margin: 0 auto;
 			padding: 0.8rem 1rem 0.8rem 1rem;
 			background: ${theme.white_C};
 			margin-bottom: 0.8rem;

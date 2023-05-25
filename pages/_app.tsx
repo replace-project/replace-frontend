@@ -13,11 +13,17 @@ import {
 	useRecoilState,
 	useRecoilValue,
 } from "recoil";
-
+import "../styles/GlobalStyle";
+import { GlobalStyle } from "../styles/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import Theme from "../styles/Theme";
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<RecoilRoot>
-			<Component {...pageProps} />
+			<ThemeProvider theme={Theme}>
+				<GlobalStyle />
+				<Component {...pageProps} />
+			</ThemeProvider>
 		</RecoilRoot>
 	);
 }
