@@ -10,8 +10,8 @@ import styled from "styled-components";
 
 import Link from "next/link";
 import LogoIcon from "../../public/logo/logo_icon.svg";
-import HamburgerMenu from "./HeaderMenu";
 import Theme from "../../styles/Theme";
+import SideBar from "../nav/HamburgerSideNav";
 
 const Header: React.FC = () => {
 	return (
@@ -21,7 +21,7 @@ const Header: React.FC = () => {
 					<LogoIcon height="2.7rem" color={Theme.subTheme_C}></LogoIcon>
 				</Link>
 			</LogoContainer>
-			<HamburgerMenu />
+			<SideBar />
 		</Container>
 	);
 };
