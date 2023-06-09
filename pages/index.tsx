@@ -9,6 +9,7 @@ import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "../components/common/CommonComponents";
 import Header from "../components/header/Header";
+import Theme from "../styles/Theme";
 
 const Home: React.FC = () => {
 	return (
@@ -20,4 +21,6 @@ const Home: React.FC = () => {
 
 export default Home;
 
-const Container = styled(Wrapper)``;
+const Container = styled(Wrapper)`
+	background-color: ${(props) => props.theme.white_C};
+`;

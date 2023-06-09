@@ -8,8 +8,11 @@
 export default {
 	basicTheme_C: "#FEF7F2",
 
-	subTheme_C: "#7B716D",
-	subTheme1_C: "#051D40",
+	subTheme_C: "#7A726E",
+	subTheme1_C: "#A09A95",
+	subTheme2_C: "#FDF7F3",
+	subTheme4_C: "#FFFDF7",
+	
 
 	kakao_C: "#FAE100",
 	naver_C: "#00C73C",

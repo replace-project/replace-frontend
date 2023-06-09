@@ -9,16 +9,16 @@ import React from "react";
 import styled from "styled-components";
 
 import Link from "next/link";
-import LogoIcon from "../../public/logo/logo_icon.svg";
+import LogoText from "../../public/logo/logo_text.svg";
 import Theme from "../../styles/Theme";
-import SideBar from "../nav/HamburgerSideNav";
+import SideBar from "../sidebar/SideBarLayout";
 
 const Header: React.FC = () => {
 	return (
 		<Container>
 			<LogoContainer>
 				<Link href={"/"}>
-					<LogoIcon height="2.7rem" color={Theme.subTheme_C}></LogoIcon>
+					<LogoText height="45px" />
 				</Link>
 			</LogoContainer>
 			<SideBar />
@@ -33,9 +33,7 @@ const Container = styled.header`
 	justify-content: space-between;
 	position: sticky;
 	width: 100%;
-	height: 3rem;
-	box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
-	background: ${(props) => props.theme.basicTheme_C};
+	height: 60px;
 	top: 0;
 	left: 0;
 	z-index: 10;

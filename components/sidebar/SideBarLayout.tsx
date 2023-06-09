@@ -8,13 +8,16 @@
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
 import OutsideClickHandler from "react-outside-click-handler";
-import HamburgerIcon from "../../public/header/hamburger_menu.svg";
+import HamburgerIcon from "../../public/header/menu_icon.svg";
 import { useRecoilState } from "recoil";
 import {
 	isClosingState,
 	isOpeningState,
 } from "../../recoil/atoms/nav/sideBarState";
 import Theme from "../../styles/Theme";
+import SideBarTitle from "./SideBarTitle";
+import SideBarAuths from "./SideBarAuth";
+import MenuLayout from "./MenuLayout";
 
 interface SideBarProps {
 	isOpen: boolean;
@@ -42,9 +45,15 @@ const SideBar: React.FC = () => {
 		>
 			<React.Fragment>
 				<WrapperButton onClick={handleClick}>
-					<HamburgerIcon style={{ color: Theme.subTheme_C }} height="1.8rem" />
+					<HamburgerIcon height="30px" />
 				</WrapperButton>
-				{(isOpen || isClosing) && <SideBarMenu isOpen={isOpen}></SideBarMenu>}
+				{(isOpen || isClosing) && (
+					<SideBarLayout isOpen={isOpen}>
+						<SideBarTitle />
+						<SideBarAuths />
+						<MenuLayout />
+					</SideBarLayout>
+				)}
 			</React.Fragment>
 		</OutsideClickHandler>
 	);
@@ -78,12 +87,14 @@ const WrapperButton = styled.button`
 	margin-left: auto;
 `;
 
-const SideBarMenu = styled.aside<SideBarProps>`
+const SideBarLayout = styled.aside<SideBarProps>`
 	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100%;
-	background-color: ${(props) => props.theme.basicTheme_C};
+	top: 2.5%; // 5%를 위 아래로 나눔
+	left: 1%;
+	height: 95%;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+	border-radius: 15px;
+	background-color: ${(props) => props.theme.white_C};
 	animation: ${(props) =>
 		props.isOpen
 			? css`
@@ -100,6 +111,6 @@ const SideBarMenu = styled.aside<SideBarProps>`
 
 	@media (min-width: 450px) {
 		/* 웹사이트 크기에 맞는 미디어 쿼리 */
-		width: 450px;
+		width: 380px;
 	}
 `;

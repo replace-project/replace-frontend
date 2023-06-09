@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="40" height="35" fill="white"/>
+<rect width="40" height="5" fill="black"/>
+<rect y="15" width="26" height="5" fill="black"/>
+<rect x="32" y="15" width="8" height="5" fill="#BDBDBD"/>
+<rect y="30" width="40" height="5" fill="black"/>
+</svg>
