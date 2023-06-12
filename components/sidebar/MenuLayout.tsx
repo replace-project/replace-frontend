@@ -21,7 +21,6 @@ const MenuLayout: React.FC = () => {
 	return (
 		<Container>
 			{sideBarItems.map((item, index) => {
-				console.log(item.name, item.icon);
 				return <MenuItem key={index} name={item.name} icon={item.icon} />;
 			})}
 		</Container>
@@ -37,8 +36,8 @@ const Container = styled(ColWrapper)`
 	align-items: bottom;
 	padding: 60px 72px;
 	gap: 40px;
-
-	background: #ffffff;
+	height: auto;
+	background: #fff;
 	border-radius: 12px;
 
 	/* Inside auto layout */

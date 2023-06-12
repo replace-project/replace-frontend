@@ -14,12 +14,14 @@ const globalStyle = css`
 	* {
 		box-sizing: border-box;
 	}
+
+	html,
 	body {
 		margin: 0;
 		font-family: Noto Sans, Noto Sans KR;
 		color: ${theme.black_C};
-		background: ${theme.lightGrey_C};
-
+		background: ${theme.white_C};
+		height: 100%;
 		section {
 			max-width: 50.8rem;
 			margin: 0 auto;

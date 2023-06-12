@@ -85,6 +85,12 @@ const WrapperButton = styled.button`
 	background-color: transparent;
 	border: none;
 	margin-left: auto;
+	margin-right: 1rem;
+
+	& > :hover {
+		cursor: pointer;
+		opacity: 0.7;
+	}
 `;
 
 const SideBarLayout = styled.aside<SideBarProps>`

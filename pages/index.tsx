@@ -7,20 +7,22 @@
 
 import React from "react";
 import styled from "styled-components";
-import { Wrapper } from "../components/common/CommonComponents";
+import { WholeWrapper, Wrapper } from "../components/common/CommonComponents";
 import Header from "../components/header/Header";
 import Theme from "../styles/Theme";
+import MapLayout from "../components/maps/Map";
 
 const Home: React.FC = () => {
 	return (
-		<Container>
-			<Header></Header>
-		</Container>
+		<>
+			<Container>
+				<Header></Header>
+				<MapLayout></MapLayout>
+			</Container>
+		</>
 	);
 };
 
 export default Home;
 
-const Container = styled(Wrapper)`
-	background-color: ${(props) => props.theme.white_C};
-`;
+const Container = styled(Wrapper)``;
