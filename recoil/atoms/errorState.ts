@@ -8,7 +8,7 @@
 import { atom } from "recoil";
 
 /**
- * 유저 위치 에러 메시지 상태 atom
+ * 유저 위치 에러 메시지 상태를 정의합니다. default: ''
  */
 export const locationErrorState = atom({
 	key: "locationErrorState",

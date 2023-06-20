@@ -7,9 +7,10 @@
 
 import React from "react";
 import styled from "styled-components";
-import { WholeWrapper, Wrapper } from "../components/common/CommonComponents";
+import { Wrapper } from "../components/common/CommonComponents";
+import dynamic from "next/dynamic";
+import { useRecoilState } from "recoil";
 import Header from "../components/header/Header";
-import Theme from "../styles/Theme";
 import MapLayout from "../components/maps/Map";
 
 const Home: React.FC = () => {

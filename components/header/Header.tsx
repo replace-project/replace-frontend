@@ -47,4 +47,5 @@ const LogoContainer = styled.div`
 	flex-grow: 1;
 	display: flex;
 	justify-content: center;
+	margin-left: 60px;
 `;
