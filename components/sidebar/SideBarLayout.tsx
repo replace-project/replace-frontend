@@ -5,7 +5,7 @@
  * Email : pine9805@kakao.com
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 import OutsideClickHandler from "react-outside-click-handler";
 import HamburgerIcon from "../../public/header/menu_icon.svg";
@@ -13,14 +13,17 @@ import { useRecoilState } from "recoil";
 import {
 	isClosingState,
 	isOpeningState,
-} from "../../recoil/atoms/nav/sideBarState";
+} from "../../recoil/atoms/slide/slideState";
 import Theme from "../../styles/Theme";
 import SideBarTitle from "./SideBarTitle";
 import SideBarAuths from "./SideBarAuth";
 import MenuLayout from "./MenuLayout";
 
 interface SideBarProps {
-	isOpen: boolean;
+	isOpen: {
+		state: boolean;
+		type: string;
+	};
 }
 
 const SideBar: React.FC = () => {
@@ -28,17 +31,24 @@ const SideBar: React.FC = () => {
 	const [isClosing, setIsClosing] = useRecoilState(isClosingState);
 
 	const handleClick = () => {
-		setIsOpen(!isOpen);
-		if (isOpen) {
-			setIsClosing(true);
-			setTimeout(() => setIsClosing(false), 500);
-		}
+		setIsOpen((prevState) => ({
+			state: !prevState.state,
+			type: "sidebar",
+		}));
 	};
+
+	useEffect(() => {
+		console.log("in sidebar" + isOpen.type, isOpen.state);
+		if (isOpen.state && isOpen.type === "sidebar") {
+			setIsClosing({ state: true, type: "sidebar" });
+			setTimeout(() => setIsClosing({ state: false, type: "" }), 500);
+		}
+	}, [isOpen]);
 
 	return (
 		<OutsideClickHandler
 			onOutsideClick={() => {
-				if (isOpen) {
+				if (isOpen.state && isOpen.type === "sidebar") {
 					handleClick();
 				}
 			}}
@@ -102,7 +112,7 @@ const SideBarLayout = styled.aside<SideBarProps>`
 	border-radius: 15px;
 	background-color: ${(props) => props.theme.white_C};
 	animation: ${(props) =>
-		props.isOpen
+		props.isOpen.state && props.isOpen.type === "sidebar"
 			? css`
 					${slideIn} 0.5s forwards
 			  `

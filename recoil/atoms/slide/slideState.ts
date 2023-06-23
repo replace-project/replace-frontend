@@ -12,7 +12,7 @@ import { atom } from "recoil";
  */
 export const isOpeningState = atom({
 	key: "isOpeningState",
-	default: false,
+	default: { state: false, type: "" },
 });
 
 /**
@@ -20,5 +20,21 @@ export const isOpeningState = atom({
  */
 export const isClosingState = atom({
 	key: "isClosingState",
-	default: false,
+	default: { state: false, type: "" },
 });
+
+// /**
+//  * 사이드바의 열리는 상태를 정의합니다. default: false
+//  */
+// export const isOpeningState = atom({
+// 	key: "isOpeningState",
+// 	default: false,
+// });
+
+// /**
+//  * 사이드바의 닫히는 상태를 정의합니다. default: false
+//  */
+// export const isClosingState = atom({
+// 	key: "isClosingState",
+// 	default: false,
+// });
