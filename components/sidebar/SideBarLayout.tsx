@@ -57,7 +57,7 @@ const SideBar: React.FC = () => {
 				<WrapperButton onClick={handleClick}>
 					<HamburgerIcon height="30px" />
 				</WrapperButton>
-				{(isOpen || isClosing) && (
+				{((isOpen.state && isOpen.type === "sidebar") || isClosing) && (
 					<SideBarLayout isOpen={isOpen}>
 						<SideBarTitle />
 						<SideBarAuths />
@@ -87,7 +87,7 @@ const slideOut = keyframes`
     }
 
     to{
-        transform: translateX(-100%);
+        transform: translateX(-110%);
     }
 `;
 

@@ -7,11 +7,6 @@
 
 import { atom } from "recoil";
 
-export const isMarkerClickState = atom({
-	key: "isMarkerClickState",
-	default: false,
-});
-
 export const clickedMarkerIdState = atom({
 	key: "clickedMarkerIdState",
 	default: 0,
