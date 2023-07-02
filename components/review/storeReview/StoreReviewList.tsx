@@ -15,10 +15,12 @@ import {
 } from "../../../recoil/atoms/slide/slideState";
 import OutsideClickHandler from "react-outside-click-handler";
 import ReviewCardMini from "./ReviewCardMini";
-
-interface IProps {
-	id: number;
-}
+import { useRecoilValue, useRecoilValueLoadable } from "recoil";
+import { fetchReviewListWithStoreId } from "../../../recoil/selectors/review/reviewSelecotrs";
+import { clickedStoreIdState } from "../../../recoil/atoms/map/storeState";
+import { useState } from "react";
+import { ReviewList } from "../../../types/review";
+import SkeletonReviewCardMini from "./SkeletonReviewCardMini";
 
 interface ReviewListProps {
 	isOpen: {
@@ -27,9 +29,21 @@ interface ReviewListProps {
 	};
 }
 
-const StoreReviewList: React.FC<IProps> = ({ id }) => {
+const StoreReviewList: React.FC = () => {
 	const [, setIsClosing] = useRecoilState(isClosingState);
 	const [isOpen, setIsOpen] = useRecoilState(isOpeningState);
+
+	const storeId = useRecoilValue(clickedStoreIdState);
+	const reviewListLoadable = useRecoilValueLoadable(
+		fetchReviewListWithStoreId(storeId)
+	);
+	const [content, setContent] = useState<ReviewList | null>(null);
+
+	useEffect(() => {
+		if (reviewListLoadable.state === "hasValue") {
+			setContent(reviewListLoadable.contents);
+		}
+	}, [reviewListLoadable.state]);
 
 	const handleClick = () => {
 		setIsOpen((prevState) => ({
@@ -37,12 +51,14 @@ const StoreReviewList: React.FC<IProps> = ({ id }) => {
 			type: "reviewList",
 		}));
 	};
+
 	useEffect(() => {
 		if (isOpen.state && isOpen.type === "reviewList") {
 			setIsClosing({ state: true, type: "reviewList" });
 			setTimeout(() => setIsClosing({ state: false, type: "" }), 500);
 		}
-	}, [isOpen]);
+	}, [isOpen.state]);
+
 	return (
 		<OutsideClickHandler
 			onOutsideClick={() => {
@@ -53,13 +69,21 @@ const StoreReviewList: React.FC<IProps> = ({ id }) => {
 		>
 			<React.Fragment>
 				<Container isOpen={isOpen}>
-					<StoreInfoWrapper>
-						<Text fontSize="1.2rem">공간 이름</Text>
-						<Text fontSize="0.9rem">경기도 의정부시 민락로 41-1 1층</Text>
-					</StoreInfoWrapper>
-					<Wrapper padding="0.625rem" al="flex-start">
-						<ReviewCardMini></ReviewCardMini>
-					</Wrapper>
+					{reviewListLoadable.state === "loading" ? (
+						<SkeletonReviewCardMini></SkeletonReviewCardMini>
+					) : (
+						content && (
+							<>
+								<StoreInfoWrapper>
+									<Text fontSize="1.4rem">{content?.store?.name}</Text>
+									<Text fontSize="1.2rem">{content?.store?.address}</Text>
+								</StoreInfoWrapper>
+								<Wrapper padding="0.625rem" al="flex-start">
+									<ReviewCardMini reviews={content?.reviews}></ReviewCardMini>
+								</Wrapper>
+							</>
+						)
+					)}
 				</Container>
 			</React.Fragment>
 		</OutsideClickHandler>

@@ -26,8 +26,7 @@ import {
 } from "../../recoil/atoms/map/coordinateState";
 import { fetchReviewMarkers } from "../../recoil/selectors/review/reviewSelecotrs";
 import { StoreData } from "../../types/review";
-import { Store } from "antd/es/form/interface";
-import { clickedMarkerIdState } from "../../recoil/atoms/map/markerState";
+import { clickedStoreIdState } from "../../recoil/atoms/map/storeState";
 import { isOpeningState } from "../../recoil/atoms/slide/slideState";
 
 const MapLayout: React.FC = () => {
@@ -36,9 +35,8 @@ const MapLayout: React.FC = () => {
 
 	const [SWcoordinate, setSWcoordinate] = useRecoilState(SWcoordinateState);
 	const [NEcoordinate, setNEcoordinate] = useRecoilState(NEcoordinateState);
-	const [isOpen, setIsOpen] = useRecoilState(isOpeningState);
-	const [clikcedMarkerId, setClickedMarkerId] =
-		useRecoilState(clickedMarkerIdState);
+	const [, setIsOpen] = useRecoilState(isOpeningState);
+	const [, setClickedMarkerId] = useRecoilState(clickedStoreIdState);
 
 	const [map, setMap] = useState<naver.maps.Map | null>(null);
 	const reviewMarkersLoadable = useRecoilValueLoadable(
@@ -64,7 +62,6 @@ const MapLayout: React.FC = () => {
 	useEffect(() => {
 		if (reviewMarkersLoadable.state === "hasValue") {
 			setContent(reviewMarkersLoadable.contents);
-			console.log(content);
 		} else if (reviewMarkersLoadable.state === "loading") {
 		} else if (reviewMarkersLoadable.state === "hasError") {
 		}
@@ -89,7 +86,6 @@ const MapLayout: React.FC = () => {
 
 	//// 마커 클릭 Handler
 	const handleMarkerClick = (id: number) => {
-		console.log(1);
 		setIsOpen((prevState) => ({
 			state: !prevState.state,
 			type: "reviewList",
@@ -105,6 +101,7 @@ const MapLayout: React.FC = () => {
 		// TODO: Loading 컴포넌트 구현
 		return <p>Loading...</p>;
 	}
+	console.log(typeof content);
 	return (
 		<Container>
 			<SearchButton onClick={handleRefreshLocation}>

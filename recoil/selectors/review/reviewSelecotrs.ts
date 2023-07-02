@@ -13,11 +13,12 @@ type CoordinatePrams = {
 	SWcoordinate: { lat: string; lng: string };
 };
 
-export const fetchReviewMarkers = selectorFamily<any, CoordinatePrams>({
+export const fetchReviewMarkers = selectorFamily({
 	key: "fetchReviewMarkers",
 	get:
-		({ NEcoordinate, SWcoordinate }) =>
-		async () => {
+		(parms: CoordinatePrams) =>
+		async ({ get }) => {
+			const { NEcoordinate, SWcoordinate } = parms;
 			if (
 				NEcoordinate.lat !== "" ||
 				NEcoordinate.lng !== "" ||
@@ -30,6 +31,24 @@ export const fetchReviewMarkers = selectorFamily<any, CoordinatePrams>({
 					const response = await axios.get(
 						`https://f7e742fc-fd24-4d60-9539-e608ec494543.mock.pstmn.io/review?sw_lat=${sw_lat}&sw_lng=${sw_lng}&ne_lat=${ne_lat}&ne_lng=${ne_lng}`
 					);
+					return response.data;
+				} catch (error) {
+					throw error;
+				}
+			}
+		},
+});
+
+export const fetchReviewListWithStoreId = selectorFamily({
+	key: "fetchReviewListWithStoreId",
+	get:
+		(storeId: number) =>
+		async ({ get }) => {
+			if (storeId != -1) {
+				try {
+					const response =
+						await axios.get(`https://f7e742fc-fd24-4d60-9539-e608ec494543.mock.pstmn.io/review?storeId=${storeId}
+					`);
 					return response.data;
 				} catch (error) {
 					throw error;

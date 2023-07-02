@@ -7,7 +7,7 @@
 
 import { atom } from "recoil";
 
-export const clickedMarkerIdState = atom({
-	key: "clickedMarkerIdState",
-	default: 0,
+export const clickedStoreIdState = atom({
+	key: "clickedStoreIdState",
+	default: -1,
 });

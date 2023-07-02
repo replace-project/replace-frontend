@@ -8,20 +8,21 @@
 import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "../components/common/CommonComponents";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import Header from "../components/header/Header";
 import MapLayout from "../components/maps/Map";
-import { clickedMarkerIdState } from "../recoil/atoms/map/markerState";
+import dynamic from "next/dynamic";
 import StoreReviewList from "../components/review/storeReview/StoreReviewList";
+
 import {
 	isClosingState,
 	isOpeningState,
 } from "../recoil/atoms/slide/slideState";
+import { NoSsr } from "@mui/material";
 
 const Home: React.FC = () => {
 	const [isOpen] = useRecoilState(isOpeningState);
 	const [isClosing] = useRecoilState(isClosingState);
-	const [clikcedMarkerId] = useRecoilState(clickedMarkerIdState);
 
 	return (
 		<>
@@ -29,7 +30,9 @@ const Home: React.FC = () => {
 				<Header></Header>
 				<MapLayout></MapLayout>
 				{((isOpen.state && isOpen.type === "reviewList") || isClosing) && (
-					<StoreReviewList id={clikcedMarkerId}></StoreReviewList>
+					<NoSsr>
+						<StoreReviewList></StoreReviewList>
+					</NoSsr>
 				)}
 			</Container>
 		</>
